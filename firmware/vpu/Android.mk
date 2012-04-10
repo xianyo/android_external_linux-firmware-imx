@@ -6,8 +6,12 @@ LOCAL_PATH := $(call my-dir)
 
 vpu_fw_target := $(TARGET_OUT)/lib/firmware/vpu
 
+ifeq ($(BOARD_SOC_TYPE),IMX6DL)
+vpu_fw_file := vpu_fw_imx6d.bin
+else
 soc := $(shell echo "$(BOARD_SOC_TYPE)" | tr 'A-Z' 'a-z')
 vpu_fw_file := vpu_fw_$(soc).bin
+endif
 
 # Firmware
 include $(CLEAR_VARS)
